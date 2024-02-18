@@ -18,9 +18,9 @@ class AddExpenseFragment : Fragment() {
     private lateinit var expenseRepository: ExpenseRepository
 
     private lateinit var setExpenseAmount: EditText
-    private lateinit var setExpenseDate: Button
     private lateinit var setExpenseCategory: Spinner
     private lateinit var addExpenseButton: Button
+    private lateinit var backButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,13 +30,13 @@ class AddExpenseFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_expense, container, false)
         expenseRepository = ExpenseRepository(requireContext())
 
+        backButton = view.findViewById(R.id.backButton)
         setExpenseAmount = view.findViewById(R.id.setExpenseAmountInput)
-        setExpenseDate = view.findViewById(R.id.pickDate)
         setExpenseCategory = view.findViewById(R.id.setExpenseCategory)
         addExpenseButton = view.findViewById(R.id.addExpenseButton)
 
         addExpenseButton.setOnClickListener(){
-            if(setExpenseAmount.text.isNotEmpty()){
+            if(setExpenseAmount.text.isNotEmpty() && setExpenseAmount.text.toString() != "."){
                 val currExpense = Expense(
                     id = UUID.randomUUID(),
                     date = Date(),
@@ -55,9 +55,18 @@ class AddExpenseFragment : Fragment() {
                 transaction.commit()
             }
             else{
-
+                Toast.makeText(requireContext(), "Invalid amount", Toast.LENGTH_SHORT).show()
             }
         }
+
+        backButton.setOnClickListener(){
+            val listExpenseFragment = ExpenseListFragment()
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, listExpenseFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+
         return view
     }
 }

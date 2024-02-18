@@ -24,4 +24,13 @@ interface ExpenseDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertExpense(expense: Expense)
+
+    @Query("DELETE FROM expense WHERE id = :id")
+    suspend fun deleteExpense(id: UUID)
+
+    @Query("UPDATE expense SET amount = :newAmount WHERE id = :id")
+    suspend fun updateExpenseAmount(id: UUID, newAmount: Double)
+
+    @Query("UPDATE expense SET category = :newCategory WHERE id = :id")
+    suspend fun updateExpenseCategory(id: UUID, newCategory: String)
 }

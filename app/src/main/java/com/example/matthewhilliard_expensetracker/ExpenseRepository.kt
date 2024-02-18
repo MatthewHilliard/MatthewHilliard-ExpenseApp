@@ -29,6 +29,12 @@ class ExpenseRepository(context: Context, private val coroutineScope: CoroutineS
 
     suspend fun insertExpense(expense: Expense) = database.expenseDAO().insertExpense(expense)
 
+    suspend fun deleteExpense(id: UUID) = database.expenseDAO().deleteExpense(id)
+
+    suspend fun updateExpenseAmount(id: UUID, newAmount: Double) = database.expenseDAO().updateExpenseAmount(id, newAmount)
+
+    suspend fun updateExpenseCategory(id: UUID, newCategory: String) = database.expenseDAO().updateExpenseCategory(id, newCategory)
+
     companion object {
         private var INSTANCE: ExpenseRepository? = null
 

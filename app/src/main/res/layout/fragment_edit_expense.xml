@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/backButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="311dp"
+        android:layout_marginBottom="11dp"
+        android:backgroundTint="#9ce9ff"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <TextView
+        android:id="@+id/editExpenseText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="46dp"
+        android:text="Edit Expense"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/expenseAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+
+    <TextView
+        android:id="@+id/expenseAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
+        android:text="Expense Amount: $"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/setExpenseAmountInput"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/setExpenseAmountInput"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="37dp"
+        android:hint="Expense amount"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/expenseDate"
+        app:layout_constraintEnd_toStartOf="@+id/updateAmount"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/updateAmount"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="209dp"
+        android:backgroundTint="#9ce9ff"
+        android:text="Update Amount"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/updateCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expenseAmount"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <TextView
+        android:id="@+id/expenseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="101dp"
+        android:text="Expense Date: "
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/expenseCategory"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/expenseCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="17dp"
+        android:text="Expense Category: "
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/setExpenseCategory"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/setExpenseCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="164dp"
+        android:entries="@array/expense_categories"
+        android:scaleX="1"
+        android:scaleY="1.2"
+        app:layout_constraintBottom_toTopOf="@+id/deleteButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/updateCategory"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="139dp"
+        android:backgroundTint="#9ce9ff"
+        android:text="Update Category"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/deleteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/deleteButton"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#b35454"
+        android:text="DELETE EXPENSE"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,16 +61,30 @@ class ExpenseListFragment : Fragment() {
             }
         }
 
+        adapter = ExpenseListAdapter(mutableListOf()) { expense ->
+            val bundle = Bundle().apply {
+                putString("id", expense.id.toString())
+                putDouble("amount", expense.amount)
+                putString("date", expense.date.toString())
+                putString("category", expense.category)
+            }
+            val fragment = EditExpenseFragment().apply {
+                arguments = bundle
+            }
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
+        expenseRecyclerView.adapter = adapter
+
         return view
     }
 
     private fun fetchExpensesDescending() {
         lifecycleScope.launch {
             expenseRepository.getExpensesDescending().collect { expenses ->
-                expenseRecyclerView.apply {
-                    layoutManager = LinearLayoutManager(requireContext())
-                    adapter = ExpenseListAdapter(expenses.toMutableList())
-                }
+                adapter.updateExpenses(expenses)
             }
         }
     }
@@ -78,10 +92,7 @@ class ExpenseListFragment : Fragment() {
     private fun fetchExpensesAscending() {
         lifecycleScope.launch {
             expenseRepository.getExpensesAscending().collect { expenses ->
-                expenseRecyclerView.apply {
-                    layoutManager = LinearLayoutManager(requireContext())
-                    adapter = ExpenseListAdapter(expenses.toMutableList())
-                }
+                adapter.updateExpenses(expenses)
             }
         }
     }
@@ -89,10 +100,7 @@ class ExpenseListFragment : Fragment() {
     private fun fetchExpensesType() {
         lifecycleScope.launch {
             expenseRepository.getExpensesType().collect { expenses ->
-                expenseRecyclerView.apply {
-                    layoutManager = LinearLayoutManager(requireContext())
-                    adapter = ExpenseListAdapter(expenses.toMutableList())
-                }
+                adapter.updateExpenses(expenses)
             }
         }
     }
