@@ -5,11 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
+import java.util.Date
+import java.util.UUID
+
+private const val TAG = "ExpenseListFragment"
 
 class ExpenseListFragment : Fragment() {
     private lateinit var layoutManager: RecyclerView.LayoutManager
@@ -17,6 +22,7 @@ class ExpenseListFragment : Fragment() {
     private lateinit var expenseRecyclerView: RecyclerView
     private lateinit var expenseRepository: ExpenseRepository
     private lateinit var addExpenseButton: Button
+    private lateinit var radioGroup: RadioGroup
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,23 +43,57 @@ class ExpenseListFragment : Fragment() {
             transaction.commit()
         }
 
-        //expenseRepository = ExpenseRepository(requireContext())
-        //fetchExpenses()
+        expenseRepository = ExpenseRepository(requireContext())
+        fetchExpensesDescending()
+
+        radioGroup = view.findViewById(R.id.radioGroup)
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.radioButtonSortAscending -> {
+                    fetchExpensesDescending()
+                }
+                R.id.radioButtonSortDescending -> {
+                    fetchExpensesAscending()
+                }
+                R.id.radioButtonFilterByType -> {
+                    fetchExpensesType()
+                }
+            }
+        }
 
         return view
     }
 
-/*
-    private fun fetchExpenses() {
-        val allExpenses = expenseRepository.getExpenses()
-
+    private fun fetchExpensesDescending() {
         lifecycleScope.launch {
-            expenseRepository.getExpenses().collect { expenses ->
+            expenseRepository.getExpensesDescending().collect { expenses ->
                 expenseRecyclerView.apply {
                     layoutManager = LinearLayoutManager(requireContext())
                     adapter = ExpenseListAdapter(expenses.toMutableList())
                 }
             }
         }
-    }*/
+    }
+
+    private fun fetchExpensesAscending() {
+        lifecycleScope.launch {
+            expenseRepository.getExpensesAscending().collect { expenses ->
+                expenseRecyclerView.apply {
+                    layoutManager = LinearLayoutManager(requireContext())
+                    adapter = ExpenseListAdapter(expenses.toMutableList())
+                }
+            }
+        }
+    }
+
+    private fun fetchExpensesType() {
+        lifecycleScope.launch {
+            expenseRepository.getExpensesType().collect { expenses ->
+                expenseRecyclerView.apply {
+                    layoutManager = LinearLayoutManager(requireContext())
+                    adapter = ExpenseListAdapter(expenses.toMutableList())
+                }
+            }
+        }
+    }
 }

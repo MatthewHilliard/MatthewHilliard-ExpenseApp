@@ -6,7 +6,7 @@ import java.util.Date
 import java.util.UUID
 
 @Entity
-data class Expense (
+data class Expense(
     @PrimaryKey val id: UUID,
     val date: Date,
     val amount: Double,

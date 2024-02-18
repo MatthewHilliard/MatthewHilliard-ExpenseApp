@@ -21,17 +21,14 @@ class ExpenseListAdapter(private val expenses: MutableList<Expense>) : RecyclerV
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val expenseTitle: TextView = itemView.findViewById(R.id.expense_title)
+        private val expenseCategory: TextView = itemView.findViewById(R.id.expense_category)
         private val expenseAmount: TextView = itemView.findViewById(R.id.expense_amount)
         private val expenseDate: TextView = itemView.findViewById(R.id.expense_date)
-        private val expenseCategory: TextView = itemView.findViewById(R.id.expense_category)
 
         fun bind(expense: Expense) {
-            val expenseId = expense.id.toString()
-            expenseTitle.text = "Expense #$expenseId"
-            expenseAmount.text = expense.amount.toString()
+            expenseCategory.text = expense.category
+            expenseAmount.text = "$"+expense.amount.toString()
             expenseDate.text = expense.date.toString()
-            expenseCategory.text = expense.category.toString()
         }
     }
 }
