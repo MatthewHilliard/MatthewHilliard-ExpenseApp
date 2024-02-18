@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import java.lang.IllegalStateException
 import java.util.UUID
 
-class ExpenseRepository private constructor(context: Context) {
+class ExpenseRepository(context: Context) {
     private val database: ExpenseDatabase = Room
         .databaseBuilder(
             context.applicationContext,
