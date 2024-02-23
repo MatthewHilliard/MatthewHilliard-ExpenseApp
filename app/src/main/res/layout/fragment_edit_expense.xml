@@ -70,12 +70,12 @@
         android:layout_height="50dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="209dp"
+        android:layout_marginBottom="87dp"
         android:backgroundTint="#9ce9ff"
         android:text="Update Amount"
         android:textColor="@color/black"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/updateCategory"
+        app:layout_constraintBottom_toTopOf="@+id/updateDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expenseAmount"
         app:strokeColor="@color/black"
@@ -93,6 +93,20 @@
         app:layout_constraintBottom_toTopOf="@+id/expenseCategory"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/updateDate"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="72dp"
+        android:backgroundTint="#9ce9ff"
+        android:text="Update Date"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/updateCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
 
     <TextView
         android:id="@+id/expenseCategory"

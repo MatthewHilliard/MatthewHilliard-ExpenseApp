@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import java.lang.IllegalStateException
+import java.util.Date
 import java.util.UUID
 
 class ExpenseRepository(context: Context, private val coroutineScope: CoroutineScope = GlobalScope) {
@@ -34,6 +35,8 @@ class ExpenseRepository(context: Context, private val coroutineScope: CoroutineS
     suspend fun updateExpenseAmount(id: UUID, newAmount: Double) = database.expenseDAO().updateExpenseAmount(id, newAmount)
 
     suspend fun updateExpenseCategory(id: UUID, newCategory: String) = database.expenseDAO().updateExpenseCategory(id, newCategory)
+
+    suspend fun updateExpenseDate(id: UUID, newDate: Date) = database.expenseDAO().updateExpenseDate(id, newDate)
 
     companion object {
         private var INSTANCE: ExpenseRepository? = null

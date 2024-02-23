@@ -7,6 +7,7 @@ import androidx.room.Query
 import com.example.matthewhilliard_expensetracker.Expense
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
+import java.util.Date
 
 @Dao
 interface ExpenseDAO {
@@ -33,4 +34,7 @@ interface ExpenseDAO {
 
     @Query("UPDATE expense SET category = :newCategory WHERE id = :id")
     suspend fun updateExpenseCategory(id: UUID, newCategory: String)
+
+    @Query("UPDATE expense SET date = :newDate WHERE id = :id")
+    suspend fun updateExpenseDate(id: UUID, newDate: Date)
 }
